@@ -4,13 +4,17 @@ import { UserProfile } from "../interfaces/user-profile";
 
 const debug = process.env.DEBUG === "true";
 
-const login = async (username: string, password: string) => {
+const login = async (
+  client: MoneyLoverClient,
+  username: string,
+  password: string
+): Promise<UserProfile | null> => {
   let token: string;
   token = await MoneyLoverClient.getToken(username, password);
   try {
     const jwtToken: jwt.JwtPayload = jwt.decode(token) as jwt.JwtPayload;
-    const ml = new MoneyLoverClient(token);
-    const userInfo: UserProfile = await ml.getUserInfo();
+    client.setToken(token);
+    const userInfo: UserProfile = await client.getUserInfo();
     if (debug) {
       if (!jwtToken.exp) {
         throw new Error("Invalid JWT token: missing exp field");

@@ -9,9 +9,7 @@ const moneyLoverTokenUrl = "https://oauth.moneylover.me";
 
 class MoneyLoverClient {
   private _jwtToken: string | null = null;
-  constructor(jwtToken: string | null = null) {
-    this._jwtToken = jwtToken;
-  }
+  constructor() {}
 
   private async _postRequest(
     path: string,
@@ -67,6 +65,10 @@ class MoneyLoverClient {
     return tokenData.access_token;
   }
 
+  setToken(token: string) {
+    this._jwtToken = token;
+  }
+
   isTokenValid(): boolean {
     if (this._jwtToken != null) {
       // Check if token is expired
@@ -119,3 +121,7 @@ class MoneyLoverClient {
 }
 
 export default MoneyLoverClient;
+
+export const NewMoneyLoverClient = () => {
+  return new MoneyLoverClient();
+}
