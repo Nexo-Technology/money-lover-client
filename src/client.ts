@@ -13,7 +13,7 @@ class MoneyLoverClient {
 
   private async _postRequest(
     path: string,
-    body: any = null,
+    body: any = {},
     headers: Record<string, string> = {}
   ): Promise<any> {
     const res = await fetch(`${moneyLoverUrl}/api${path}`, {
@@ -25,7 +25,7 @@ class MoneyLoverClient {
         "Content-Type": "application/json",
         ...headers,
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(body || {}),
     });
 
     const data = await res.json();
@@ -124,4 +124,4 @@ export default MoneyLoverClient;
 
 export const NewMoneyLoverClient = () => {
   return new MoneyLoverClient();
-}
+};
