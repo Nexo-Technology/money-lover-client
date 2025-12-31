@@ -30,7 +30,7 @@ export interface Category {
   id: string;
 
   /** Optional parent category ID for hierarchical categorization */
-  parent?: CategoryParent;
+  parent?: string | CategoryParent;
 
   exclude_accounts: string[]; // Excluded account IDs, like wallet IDs
 }

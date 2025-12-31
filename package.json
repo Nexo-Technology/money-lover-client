@@ -1,6 +1,6 @@
 {
   "name": "money-lover-app-client",  
-  "version": "1.0.7",
+  "version": "1.0.9",
   "main": "dist/bundle.js",      
   "types": "dist/index.d.ts",    
   "scripts": {
