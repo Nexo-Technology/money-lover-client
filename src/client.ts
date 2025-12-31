@@ -83,6 +83,10 @@ class MoneyLoverClient {
     return false;
   }
 
+  getToken(): string | null {
+    return this._jwtToken;
+  }
+
   getUserInfo() {
     return this._postRequest("/user/info");
   }
