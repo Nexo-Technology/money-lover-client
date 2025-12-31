@@ -106,17 +106,19 @@ class MoneyLoverClient {
     });
   }
 
-  addTransaction(transaction: MoneyLoverTransaction) {
+  addTransaction(
+    transaction: MoneyLoverTransaction
+  ): Promise<MoneyLoverTransaction> {
     return this._postRequest(
       "/transaction/add",
-      JSON.stringify({
+      {
         with: [],
         account: transaction.account,
         category: transaction.category,
         amount: transaction.amount,
         note: transaction.note,
         displayDate: formatDate(transaction.date),
-      }),
+      },
       {
         "Content-Type": "application/json",
       }
