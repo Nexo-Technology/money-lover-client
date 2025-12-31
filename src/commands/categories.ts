@@ -18,7 +18,8 @@ const getCategories = async (
   //   Api may return all categories even when the walletId is specified,
   //   so we filter them here to return only the categories that belong to the specified walletId.
   return allCategories.filter(
-    (category: any) => category.walletId === walletId
+    (category: MoneyLoverCategory) =>
+      !category.exclude_accounts.includes(walletId)
   );
 };
 
