@@ -1,25 +1,22 @@
 import MoneyLoverClient from "../client";
-import { MoneyLoverCategory } from "../interfaces/category";
+import { Category } from "../interfaces/category";
 
 const getCategories = async (
   client: MoneyLoverClient,
   walletId: string
-): Promise<MoneyLoverCategory[]> => {
+): Promise<Category[]> => {
   if (!client) {
     throw new Error("Not logged in");
   }
   if (!client.isTokenValid()) {
     throw new Error("Token has expired");
   }
-  const allCategories: MoneyLoverCategory[] = await client.getCategories(
-    walletId
-  );
+  const allCategories: Category[] = await client.getCategories(walletId);
 
   //   Api may return all categories even when the walletId is specified,
   //   so we filter them here to return only the categories that belong to the specified walletId.
   return allCategories.filter(
-    (category: MoneyLoverCategory) =>
-      !category.exclude_accounts.includes(walletId)
+    (category: Category) => !category.exclude_accounts.includes(walletId)
   );
 };
 

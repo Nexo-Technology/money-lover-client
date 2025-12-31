@@ -1,4 +1,6 @@
-export interface MoneyLoverWallet {
+import { UserSnippet } from "./user-snippet";
+
+export interface Wallet {
   _id: string;
   name: string;
   currency_id: number;
@@ -9,17 +11,13 @@ export interface MoneyLoverWallet {
   account_type: number;
   exclude_total: boolean;
   icon: string;
-  listUser: MoneyLoverObjectUser[];
+  listUser: UserSnippet[];
   createdAt: string; // Could also use Date if you plan to parse it
   updateAt: string;
   isDelete: boolean;
   balance: MoneyLoverBankTransaction[];
 }
 
-export interface MoneyLoverObjectUser {
-  _id: string;
-  email: string;
-}
 export interface MoneyLoverBankTransaction {
   date: string;
   valueDate: string;

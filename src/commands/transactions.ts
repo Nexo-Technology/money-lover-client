@@ -1,5 +1,5 @@
 import MoneyLoverClient from "../client";
-import { MoneyLoverTransaction } from "../interfaces/transaction";
+import { UpsertTransaction } from "../interfaces/transaction";
 
 const getTransactions = async (
   client: MoneyLoverClient,
@@ -24,7 +24,7 @@ const getTransactions = async (
 
 const addTransaction = async (
   client: MoneyLoverClient,
-  transaction: MoneyLoverTransaction
+  transaction: UpsertTransaction
 ) => {
   if (!client) {
     throw new Error("MoneyLoverClient: Not logged in");

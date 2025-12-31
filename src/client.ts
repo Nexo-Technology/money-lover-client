@@ -1,6 +1,6 @@
-import { MoneyLoverCategory } from "./interfaces/category";
-import { MoneyLoverTransaction } from "./interfaces/transaction";
-import { MoneyLoverWallet } from "./interfaces/wallet";
+import { Category } from "./interfaces/category";
+import { UpsertTransaction } from "./interfaces/transaction";
+import { Wallet } from "./interfaces/wallet";
 import jwt from "jsonwebtoken";
 import { formatDate } from "./utils";
 
@@ -91,10 +91,10 @@ class MoneyLoverClient {
     return this._postRequest("/user/info");
   }
 
-  getWallets(): Promise<MoneyLoverWallet[]> {
+  getWallets(): Promise<Wallet[]> {
     return this._postRequest("/wallet/list");
   }
-  getCategories(walletId: string): Promise<MoneyLoverCategory[]> {
+  getCategories(walletId: string): Promise<Category[]> {
     return this._postRequest("/category/list-all", { walletId: walletId });
   }
 
@@ -106,9 +106,7 @@ class MoneyLoverClient {
     });
   }
 
-  addTransaction(
-    transaction: MoneyLoverTransaction
-  ): Promise<MoneyLoverTransaction> {
+  addTransaction(transaction: UpsertTransaction): Promise<UpsertTransaction> {
     return this._postRequest(
       "/transaction/add",
       {

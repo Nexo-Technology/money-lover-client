@@ -4,11 +4,11 @@ import login from "./commands/login";
 import logout from "./commands/logout";
 import { addTransaction, getTransactions } from "./commands/transactions";
 import getWallets from "./commands/wallets";
-import { MoneyLoverCategory } from "./interfaces/category";
+import { Category } from "./interfaces/category";
 import { CategoryType } from "./interfaces/category-type";
-import { MoneyLoverTransaction } from "./interfaces/transaction";
+import { UpsertTransaction } from "./interfaces/transaction";
 import { UserProfile } from "./interfaces/user-profile";
-import { MoneyLoverWallet } from "./interfaces/wallet";
+import { Wallet } from "./interfaces/wallet";
 
 export {
   MoneyLoverClient,
@@ -22,8 +22,8 @@ export {
 
   //   Interfaces
   CategoryType,
-  MoneyLoverCategory,
-  MoneyLoverTransaction,
+  Category,
+  UpsertTransaction,
   UserProfile,
-  MoneyLoverWallet,
+  Wallet,
 };

@@ -1,4 +1,6 @@
-export interface MoneyLoverCategory {
+import { CategoryParent } from "./category-parent";
+
+export interface Category {
   /** Internal unique identifier for the specific item */
   _id: string;
 
@@ -28,7 +30,7 @@ export interface MoneyLoverCategory {
   id: string;
 
   /** Optional parent category ID for hierarchical categorization */
-  parent?: string;
+  parent?: CategoryParent;
 
   exclude_accounts: string[]; // Excluded account IDs, like wallet IDs
 }
