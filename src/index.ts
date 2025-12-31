@@ -6,7 +6,7 @@ import { addTransaction, getTransactions } from "./commands/transactions";
 import getWallets from "./commands/wallets";
 import { Category } from "./interfaces/category";
 import { CategoryType } from "./interfaces/category-type";
-import { UpsertTransaction } from "./interfaces/transaction";
+import { Transaction, UpsertTransaction } from "./interfaces/transaction";
 import { UserProfile } from "./interfaces/user-profile";
 import { Wallet } from "./interfaces/wallet";
 
@@ -23,6 +23,7 @@ export {
   //   Interfaces
   CategoryType,
   Category,
+  Transaction,
   UpsertTransaction,
   UserProfile,
   Wallet,
