@@ -122,6 +122,27 @@ class MoneyLoverClient {
       }
     );
   }
+
+  updateTransaction(transaction: UpsertTransaction): Promise<UpsertTransaction> {
+    if (!transaction._id) {
+      throw new Error("Transaction _id is required for update");
+    }
+    return this._postRequest(
+      "/transaction/update",
+      {
+        _id: transaction._id,
+        id: transaction.id,
+        with: [],
+        account: transaction.account,
+        category: transaction.category,
+        amount: transaction.amount,
+        note: transaction.note,
+        displayDate: formatDate(transaction.date),
+      },
+      {        "Content-Type": "application/json",
+      }
+    );
+  }
 }
 
 export default MoneyLoverClient;

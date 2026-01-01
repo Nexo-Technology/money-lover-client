@@ -3,6 +3,8 @@ import { Category } from "./category";
 import { UserSnippet } from "./user-snippet";
 
 export interface UpsertTransaction {
+  _id?: string; // Optional for new transactions
+  id?: string; // Optional external ID
   account: string; // Wallet ID
   category: string; // Category ID
   amount: string; // Amount as string

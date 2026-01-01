@@ -2,7 +2,11 @@ import MoneyLoverClient, { NewMoneyLoverClient } from "./client";
 import getCategories from "./commands/categories";
 import login from "./commands/login";
 import logout from "./commands/logout";
-import { addTransaction, getTransactions } from "./commands/transactions";
+import {
+  addTransaction,
+  getTransactions,
+  updateTransaction,
+} from "./commands/transactions";
 import getWallets from "./commands/wallets";
 import { Category } from "./interfaces/category";
 import { CategoryType } from "./interfaces/category-type";
@@ -18,6 +22,7 @@ export {
   logout,
   getTransactions,
   addTransaction,
+  updateTransaction,
   getWallets,
 
   //   Interfaces

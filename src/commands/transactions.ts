@@ -41,4 +41,20 @@ const addTransaction = async (
   return await client.addTransaction(transaction);
 };
 
-export { getTransactions, addTransaction };
+const updateTransaction = async (
+  client: MoneyLoverClient,
+  transaction: UpsertTransaction
+) => {
+  if (!client) {
+    throw new Error("MoneyLoverClient: Not logged in");
+  }
+  if (!client.isTokenValid()) {
+    throw new Error("MoneyLoverClient: Token has expired");
+  }
+  if (!transaction._id) {
+    throw new Error("MoneyLoverClient: Transaction must have _id for update");
+  }
+  return await client.updateTransaction(transaction);
+};
+
+export { getTransactions, addTransaction, updateTransaction };
