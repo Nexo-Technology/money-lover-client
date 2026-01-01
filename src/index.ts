@@ -6,6 +6,7 @@ import {
   addTransaction,
   getTransactions,
   updateTransaction,
+  deleteTransaction,
 } from "./commands/transactions";
 import getWallets from "./commands/wallets";
 import { Category } from "./interfaces/category";
@@ -23,6 +24,7 @@ export {
   getTransactions,
   addTransaction,
   updateTransaction,
+  deleteTransaction,
   getWallets,
 
   //   Interfaces

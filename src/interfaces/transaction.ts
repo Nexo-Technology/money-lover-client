@@ -49,3 +49,8 @@ export interface Transaction {
   images: any[]; // Specific type unknown from empty array, likely string[] (URLs)
   createdAt: string; // ISO 8601 Date String
 }
+
+export interface DeleteTransaction {
+  delRelated: boolean;
+  _id: string;
+}

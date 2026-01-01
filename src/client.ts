@@ -1,5 +1,5 @@
 import { Category } from "./interfaces/category";
-import { UpsertTransaction } from "./interfaces/transaction";
+import { DeleteTransaction, UpsertTransaction } from "./interfaces/transaction";
 import { Wallet } from "./interfaces/wallet";
 import jwt from "jsonwebtoken";
 import { formatDate } from "./utils";
@@ -134,6 +134,19 @@ class MoneyLoverClient {
         displayDate: transaction.date
           ? formatDate(transaction.date)
           : transaction.displayDate,
+      },
+      { "Content-Type": "application/json" }
+    );
+  }
+
+  deleteTransaction(transaction: DeleteTransaction): Promise<any> {
+    if (!transaction._id) {
+      throw new Error("Transaction _id is required for delete");
+    }
+    return this._postRequest(
+      "/transaction/delete",
+      {
+        ...transaction,
       },
       { "Content-Type": "application/json" }
     );

@@ -1,5 +1,5 @@
 import MoneyLoverClient from "../client";
-import { UpsertTransaction } from "../interfaces/transaction";
+import { DeleteTransaction, UpsertTransaction } from "../interfaces/transaction";
 
 const getTransactions = async (
   client: MoneyLoverClient,
@@ -57,4 +57,25 @@ const updateTransaction = async (
   return await client.updateTransaction(transaction);
 };
 
-export { getTransactions, addTransaction, updateTransaction };
+const deleteTransaction = async (
+  client: MoneyLoverClient,
+  transaction: DeleteTransaction  
+) => {
+  if (!client) {
+    throw new Error("MoneyLoverClient: Not logged in");
+  }
+  if (!client.isTokenValid()) {
+    throw new Error("MoneyLoverClient: Token has expired");
+  }
+  if (!transaction._id) {
+    throw new Error("MoneyLoverClient: Transaction must have _id for delete");
+  }
+  return await client.deleteTransaction(transaction);
+}
+
+export {
+  getTransactions,
+  addTransaction,
+  updateTransaction,
+  deleteTransaction,
+};
