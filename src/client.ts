@@ -110,12 +110,10 @@ class MoneyLoverClient {
     return this._postRequest(
       "/transaction/add",
       {
-        with: [],
-        account: transaction.account,
-        category: transaction.category,
-        amount: transaction.amount,
-        note: transaction.note,
-        displayDate: formatDate(transaction.date),
+        ...transaction,
+        displayDate: transaction.date
+          ? formatDate(transaction.date)
+          : transaction.displayDate,
       },
       {
         "Content-Type": "application/json",
@@ -123,24 +121,21 @@ class MoneyLoverClient {
     );
   }
 
-  updateTransaction(transaction: UpsertTransaction): Promise<UpsertTransaction> {
+  updateTransaction(
+    transaction: UpsertTransaction
+  ): Promise<UpsertTransaction> {
     if (!transaction._id) {
       throw new Error("Transaction _id is required for update");
     }
     return this._postRequest(
-      "/transaction/update",
+      "/transaction/edit",
       {
-        _id: transaction._id,
-        id: transaction.id,
-        with: [],
-        account: transaction.account,
-        category: transaction.category,
-        amount: transaction.amount,
-        note: transaction.note,
-        displayDate: formatDate(transaction.date),
+        ...transaction,
+        displayDate: transaction.date
+          ? formatDate(transaction.date)
+          : transaction.displayDate,
       },
-      {        "Content-Type": "application/json",
-      }
+      { "Content-Type": "application/json" }
     );
   }
 }

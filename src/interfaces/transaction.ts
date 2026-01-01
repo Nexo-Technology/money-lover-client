@@ -3,13 +3,36 @@ import { Category } from "./category";
 import { UserSnippet } from "./user-snippet";
 
 export interface UpsertTransaction {
-  _id?: string; // Optional for new transactions
-  id?: string; // Optional external ID
-  account: string; // Wallet ID
-  category: string; // Category ID
-  amount: string; // Amount as string
-  note: string; // Note or description
-  date: Date; // Date in ISO format (YYYY-MM-DD)
+  _id?: string;
+  /**
+   * Type is 'any[]' because the source array is empty.
+   * You may want to replace 'any' with a specific type (e.g., string[]) if known.
+   */
+  with: any[];
+  account: string;
+  category: string;
+  amount: number;
+  note: string;
+  /**
+   * Format: YYYY-MM-DD
+   */
+  displayDate: string;
+  event: string;
+  exclude_report: boolean;
+  /**
+   * Note: This key preserves the spelling from the source JSON ("longtitude"),
+   * distinct from the standard spelling "longitude".
+   */
+  longtitude: number;
+  latitude: number;
+  addressName: string;
+  addressDetails: string;
+  addressIcon: string;
+  remind: number;
+  image: string;
+
+  //Optional
+  date?: Date;
 }
 
 export interface Transaction {
