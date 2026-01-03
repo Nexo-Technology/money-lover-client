@@ -1,5 +1,8 @@
 import MoneyLoverClient from "../client";
-import { DeleteTransaction, UpsertTransaction } from "../interfaces/transaction";
+import {
+  DeleteTransaction,
+  UpsertTransaction,
+} from "../interfaces/transaction";
 
 const getTransactions = async (
   client: MoneyLoverClient,
@@ -59,7 +62,7 @@ const updateTransaction = async (
 
 const deleteTransaction = async (
   client: MoneyLoverClient,
-  transaction: DeleteTransaction  
+  transaction: DeleteTransaction
 ) => {
   if (!client) {
     throw new Error("MoneyLoverClient: Not logged in");
@@ -71,11 +74,34 @@ const deleteTransaction = async (
     throw new Error("MoneyLoverClient: Transaction must have _id for delete");
   }
   return await client.deleteTransaction(transaction);
-}
+};
+
+const transferTransaction = async (
+  client: MoneyLoverClient,
+  outgoingTransaction: UpsertTransaction,
+  incomingTransaction: UpsertTransaction
+) => {
+  if (!client) {
+    throw new Error("MoneyLoverClient: Not logged in");
+  }
+  if (!client.isTokenValid()) {
+    throw new Error("MoneyLoverClient: Token has expired");
+  }
+  if (!outgoingTransaction || !incomingTransaction) {
+    throw new Error(
+      "MoneyLoverClient: Both outgoing and incoming transactions are required for transfer"
+    );
+  }
+  return await client.transferTransaction(
+    outgoingTransaction,
+    incomingTransaction
+  );
+};
 
 export {
   getTransactions,
   addTransaction,
   updateTransaction,
   deleteTransaction,
+  transferTransaction,
 };

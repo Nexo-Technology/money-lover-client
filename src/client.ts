@@ -151,6 +151,20 @@ class MoneyLoverClient {
       { "Content-Type": "application/json" }
     );
   }
+
+  transferTransaction(
+    outgoingTransaction: UpsertTransaction,
+    incomingTransaction: UpsertTransaction
+  ): Promise<any> {
+    return this._postRequest(
+      "/transaction/add-multi",
+      {
+        action: "transfermoney",
+        transactions: [outgoingTransaction, incomingTransaction],
+      },
+      { "Content-Type": "application/json" }
+    );
+  }
 }
 
 export default MoneyLoverClient;

@@ -33,6 +33,7 @@ export interface UpsertTransaction {
 
   //Optional
   date?: Date;
+  related: boolean;
 }
 
 export interface Transaction {
